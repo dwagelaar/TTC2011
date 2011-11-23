@@ -1,0 +1,25 @@
+-- @atlcompiler emftvm
+-- @path Graph=/TTC2011/metamodels/graph.ecore
+query nrOfCircles = Graph!Graph->allInstances()->first().circles->size().debug('nrOfCircles');
+
+-- Finds the set of all circles of 3 nodes.
+helper context Graph!Graph def : circles : Set(Set(Graph!Node)) =
+	self.nodes->iterate(n1; acc1 : Set(Set(Graph!Node)) = Set{} | 
+		self.nodes->iterate(n2; acc2 : Set(Set(Graph!Node)) = acc1 |
+			if n1 <> n2 and self.connected(n1, n2) then
+				self.nodes->iterate(n3; acc3 : Set(Set(Graph!Node)) = acc2 |
+					if n1 <> n3 and n2 <> n3 and self.connected(n2, n3) and self.connected(n3, n1) then
+						acc3->including(Set{n1, n2, n3}.debug('Found circle'))
+					else
+						acc3
+					endif
+				).debug('circles(3)')
+			else
+				acc2
+			endif
+		).debug('circles(2)')
+	).debug('circles');
+
+-- Returns true iff n1 and n2 are connected by an edge in self.
+helper context Graph!Graph def : connected(n1 : Graph!Node, n2 : Graph!Node) : Boolean =
+	self.edges->exists(e | e.src = n1 and e.trg = n2);

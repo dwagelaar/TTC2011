@@ -1,0 +1,3 @@
+-- @atlcompiler emftvm
+-- @path Graph=/TTC2011/metamodels/graph.ecore
+query nrOfNodes = Graph!Graph->allInstances()->first().nodes->size().debug('nrOfNodes');

@@ -1,0 +1,26 @@
+module graphInsertTransitiveEdgesInplace debug;
+
+transform g : Graph;
+
+rule EdgePair {
+	from g : Graph!Graph (edges =~ e1, edges =~ e2),
+		e1 : Graph!Edge (src =~ src, trg =~ mid),
+		e2 : Graph!Edge (src =~ mid, trg =~ trg),
+		src : Graph!Node,
+		mid : Graph!Node,
+		trg : Graph!Node
+	not g : Graph!Graph (edges =~ e1, edges =~ e2, edges =~ e3),
+		e1 : Graph!Edge (src =~ src, trg =~ mid),
+		e2 : Graph!Edge (src =~ mid, trg =~ trg),
+		e3 : Graph!Edge (src =~ src, trg =~ trg),
+		src : Graph!Node,
+		mid : Graph!Node,
+		trg : Graph!Node
+	to g : Graph!Graph (edges =~ e1, edges =~ e2, edges =~ e3),
+		e1 : Graph!Edge (src =~ src, trg =~ mid),
+		e2 : Graph!Edge (src =~ mid, trg =~ trg),
+		e3 : Graph!Edge (src =~ src, trg =~ trg),
+		src : Graph!Node,
+		mid : Graph!Node,
+		trg : Graph!Node
+}

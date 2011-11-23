@@ -1,0 +1,25 @@
+-- @atlcompiler emftvm
+-- @path Graph=/TTC2011/metamodels/graph.ecore
+module graphCopy;
+
+create OUT : Graph from IN : Graph;
+
+rule Graph {
+	from s : Graph!Graph
+	to t : Graph!Graph (
+		nodes <- s.nodes,
+		edges <- s.edges)
+}
+
+rule Node {
+	from s : Graph!Node
+	to t : Graph!Node (
+		name <- s.name)
+}
+
+rule Edge {
+	from s : Graph!Edge
+	to t : Graph!Edge (
+		src <- s.src,
+		trg <- s.trg)
+}

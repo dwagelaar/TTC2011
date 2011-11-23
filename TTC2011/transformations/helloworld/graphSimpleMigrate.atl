@@ -1,0 +1,26 @@
+-- @atlcompiler emftvm
+-- @path Graph=/TTC2011/metamodels/graph.ecore
+-- @path Graph2=/TTC2011/metamodels/graph2.ecore
+module graphSimpleMigrate;
+
+create OUT : Graph2 from IN : Graph;
+
+rule Graph {
+	from s : Graph!Graph
+	to t : Graph2!Graph (
+		gcs <- s.nodes->union(s.edges))
+}
+
+rule Node {
+	from s : Graph!Node
+	to t : Graph2!Node (
+		text <- s.name)
+}
+
+rule Edge {
+	from s : Graph!Edge
+	to t : Graph2!Edge (
+		text <- '',
+		src <- s.src,
+		trg <- s.trg)
+}

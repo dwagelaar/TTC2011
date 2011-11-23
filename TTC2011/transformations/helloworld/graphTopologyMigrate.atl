@@ -1,0 +1,41 @@
+-- @atlcompiler emftvm
+-- @path Graph=/TTC2011/metamodels/graph.ecore
+-- @path Graph3=/TTC2011/metamodels/graph3.ecore
+module graphTopologyMigrate;
+
+create OUT : Graph3 from IN : Graph;
+
+--
+-- Helpers
+--
+
+-- All nodes that self has outgoing edges to
+helper context Graph!Node def : linksTo : Sequence(Graph!Node) =
+	self.refImmediateComposite().edgesFrom(self)
+		->select(e | not e.trg.oclIsUndefined())
+		->collect(e | e.trg);
+
+
+-- All edges going out from node, contained in self
+helper context OclAny def : edgesFrom(node : Graph!Node) : Sequence(Graph!Edge) =
+	Sequence{};
+
+helper context Graph!Graph def : edgesFrom(node : Graph!Node) : Sequence(Graph!Edge) =
+	self.edges->select(e | e.src = node);
+
+--
+-- Rules
+--
+
+rule Graph {
+	from s : Graph!Graph
+	to t : Graph3!Graph (
+		nodes <- s.nodes)
+}
+
+rule Node {
+	from s : Graph!Node
+	to t : Graph3!Node (
+		text <- s.name,
+		linksTo <- s.linksTo)
+}
