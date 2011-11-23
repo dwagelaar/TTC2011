@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.m2m.atl.emftvm.launcher.EMFTVMTransformation">
+<stringAttribute key="ATL File Name" value="//TTC2011/transformations/helloworld/nrOfDanglingEdges.atl"/>
+<booleanAttribute key="Display Timing Data" value="true"/>
+<mapAttribute key="Inout Model Options"/>
+<mapAttribute key="Inout Models"/>
+<mapAttribute key="Input Model Options"/>
+<mapAttribute key="Input Models">
+<mapEntry key="IN" value="platform:/resource/TTC2011/models/Graph.xmi"/>
+</mapAttribute>
+<mapAttribute key="Metamodel Options"/>
+<mapAttribute key="Metamodels">
+<mapEntry key="Graph" value="platform:/resource/TTC2011/metamodels/graph.ecore"/>
+</mapAttribute>
+<stringAttribute key="Module File Name" value="/TTC2011/transformations/helloworld/nrOfDanglingEdges.emftvm"/>
+<stringAttribute key="Module Name" value="nrOfDanglingEdges"/>
+<stringAttribute key="Module Path" value="/TTC2011/transformations/helloworld/"/>
+<mapAttribute key="Output Model Options"/>
+<mapAttribute key="Output Models"/>
+<listAttribute key="Superimpose"/>
+</launchConfiguration>

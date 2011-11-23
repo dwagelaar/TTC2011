@@ -1,0 +1,16 @@
+-- @atlcompiler emftvm
+-- @path Graph=/TTC2011/metamodels/graph.ecore
+module reverseEdgesATL;
+create OUT : Graph from IN : Graph;
+
+uses graphCopy;
+
+rule Edge {
+ from
+  s : Graph!Edge
+ to
+  t : Graph!Edge (
+   src <- s.trg,
+   trg <- s.src
+  )
+}

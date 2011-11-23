@@ -1,0 +1,62 @@
+-- @atlcompiler emftvm
+-- @path Graph=/TTC2011/metamodels/graph.ecore
+module graphInsertTransitiveEdges;
+
+create OUT : Graph from IN : Graph;
+
+uses graphCopy;
+
+--
+-- Helpers
+--
+
+-- Returns all fully connected edges.
+helper context Graph!Graph def : connectedEdges : Sequence(Graph!Edge) =
+	self.edges->reject(e | e.src.oclIsUndefined() or e.trg.oclIsUndefined());
+
+
+-- Returns all pairs of edges for which a transitive edge must be inserted.
+helper context Graph!Graph def : edgePairs : Sequence(Sequence(Graph!Edge)) =
+	self.connectedEdges->iterate(e1; acc: Sequence(Sequence(Graph!Edge)) = Sequence{} |
+		acc->union(
+			self.connectedEdges->select(e2 | 
+				e1.trg = e2.src and 
+				self.connectedEdges->forAll(e3 | e3.src <> e1.src or e3.trg <> e2.trg))
+			->collect(e2 | Sequence{e1, e2})
+		)
+	);
+
+
+-- Returns true iff (e1, e2) is an edge pair that requires a transitive edge to be inserted.
+helper def : isEdgePair(e1 : Graph!Edge, e2 : Graph!Edge) : Boolean =
+	let parent : OclAny = e1.refImmediateComposite() in
+	parent = e2.refImmediateComposite() and parent.isEdgePair(e1, e2).debug('Edge pair ' + e1.toString() + ' , ' + e2.toString());
+
+-- Edges without a Graph parent are not what we are looking for.
+helper context OclAny def : isEdgePair(e1 : Graph!Edge, e2 : Graph!Edge) : Boolean =
+	false;
+
+-- Returns true iff (e1, e2) is an edge pair within self that requires a transitive edge to be inserted.
+helper context Graph!Graph def : isEdgePair(e1 : Graph!Edge, e2 : Graph!Edge) : Boolean =
+	self.edgePairs->includes(Sequence{e1, e2});
+
+--
+-- Rules
+--
+
+-- Copies Graph and adds the transitive edges for each valid edge pair.
+rule Graph {
+	from s : Graph!Graph
+	to t : Graph!Graph (
+		nodes <- s.nodes,
+		edges <- s.edges->union(s.edgePairs->collect(p | thisModule.resolveTemp(p, 't'))))
+}
+
+-- Creates a transitive edge for each valid edge pair.
+rule EdgePair {
+	from s1 : Graph!Edge,
+		 s2 : Graph!Edge (thisModule.isEdgePair(s1, s2))
+	to t : Graph!Edge (
+		src <- s1.src,
+		trg <- s2.trg)
+}

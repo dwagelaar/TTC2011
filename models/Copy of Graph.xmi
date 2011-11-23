@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ASCII"?>
+<graph:Graph xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:graph="platform:/resource/TTC2011/metamodels/graph.ecore">
+  <nodes name="a"/>
+  <nodes name="b"/>
+  <nodes name="c"/>
+  <nodes name="d"/>
+  <nodes name="n1"/>
+  <edges src="//@nodes.0" trg="//@nodes.1"/>
+  <edges src="//@nodes.1" trg="//@nodes.1"/>
+  <edges src="//@nodes.2" trg="//@nodes.1"/>
+  <edges src="//@nodes.2" trg="//@nodes.2"/>
+  <edges src="//@nodes.0"/>
+  <edges src="//@nodes.4" trg="//@nodes.2"/>
+  <edges src="//@nodes.0" trg="//@nodes.4"/>
+  <edges src="//@nodes.1" trg="//@nodes.2"/>
+  <edges src="//@nodes.2" trg="//@nodes.0"/>
+  <edges src="//@nodes.0" trg="//@nodes.2"/>
+  <edges src="//@nodes.4" trg="//@nodes.1"/>
+  <edges src="//@nodes.4" trg="//@nodes.0"/>
+  <edges src="//@nodes.1" trg="//@nodes.0"/>
+  <edges src="//@nodes.2" trg="//@nodes.4"/>
+  <edges src="//@nodes.1" trg="//@nodes.4"/>
+</graph:Graph>

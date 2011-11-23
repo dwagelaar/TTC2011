@@ -1,0 +1,10 @@
+-- @atlcompiler emftvm
+-- @path HelloWorld=/TTC2011/metamodels/helloworld.ecore
+module helloworld;
+
+create OUT : HelloWorld from IN : MOF;
+
+endpoint rule CreateGreeting() {
+	to g : HelloWorld!Greeting (
+		text <- 'Hello World')
+}
