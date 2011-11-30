@@ -64,11 +64,10 @@ To run reverseEdgesATL.atl:
 The ATL console shows the execution results. The generated model is called "ReversedEdgesGraph.xmi".
 
 To run reverseEdges.simplegt:
-1. Make a copy of the model "Graph.xmi", called "Copy of Graph.xmi".
-2. Select "Run -> Run Configurations..." from the main menu.
-3. Select "ATL EMFTVM Transformation -> reverseEdges" from the list, and click "Run".
+1. Select "Run -> Run Configurations..." from the main menu.
+2. Select "ATL EMFTVM Transformation -> reverseEdges" from the list, and click "Run".
 
-The ATL console shows the execution results. The generated model is stored back as "Copy of Graph.xmi".
+The ATL console shows the execution results. The generated model is called "Copy of Graph.xmi".
 
 Task 2.4: Simple Migration
 --------------------------
@@ -97,11 +96,10 @@ To run graphDeleteN1.atl:
 The ATL console shows the execution results. The generated model is called "GraphWithoutN1.xmi".
 
 To run graphDeleteN1Inplace.simplegt:
-1. Make a copy of the model "Graph.xmi", called "Copy of Graph.xmi".
-2. Select "Run -> Run Configurations..." from the main menu.
-3. Select "ATL EMFTVM Transformation -> graphDeleteN1Inplace" from the list, and click "Run".
+1. Select "Run -> Run Configurations..." from the main menu.
+2. Select "ATL EMFTVM Transformation -> graphDeleteN1Inplace" from the list, and click "Run".
 
-The ATL console shows the execution results. The generated model is stored back as "Copy of Graph.xmi".
+The ATL console shows the execution results. The generated model is called "Copy of Graph.xmi".
 
 Task 2.6: Optional: Insert Transitive Edges
 -------------------------------------------
@@ -117,8 +115,7 @@ To run graphInsertTransitiveEdges.atl:
 The ATL console shows the execution results. The generated model is called "GraphTransitiveEdges.xmi".
 
 To run graphInsertTransitiveEdgesInplace.simplegt:
-1. Make a copy of the model "Graph.xmi", called "Copy of Graph.xmi".
-2. Select "Run -> Run Configurations..." from the main menu.
-3. Select "ATL EMFTVM Transformation -> graphDeleteN1Inplace" from the list, and click "Run".
+1. Select "Run -> Run Configurations..." from the main menu.
+2. Select "ATL EMFTVM Transformation -> graphDeleteN1Inplace" from the list, and click "Run".
 
-The ATL console shows the execution results. The generated model is stored back as "Copy of Graph.xmi".
+The ATL console shows the execution results. The generated model is called "Copy of Graph.xmi".
