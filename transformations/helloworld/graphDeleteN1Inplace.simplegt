@@ -3,16 +3,16 @@ module graphDeleteN1Inplace debug;
 transform g : Graph;
 
 abstract rule N1 {
-	from n1 : Graph!Node (name =~ "n1")
-	to n1 : Graph!Node (name =~ "n1")
+	from n1 : Graph!Node (name =~ 'n1')
+	to n1 : Graph!Node (name =~ 'n1')
 }
 
 rule DeleteIncidentEdge extends N1 {
 	from e : Graph!Edge (trg =~ n1),
-		n1 : Graph!Node (name =~ "n1")
-	to n1 : Graph!Node (name =~ "n1")
+		n1 : Graph!Node (name =~ 'n1')
+	to n1 : Graph!Node (name =~ 'n1')
 }
 
 rule DeleteN1 extends N1 {
-	from n1 : Graph!Node (name =~ "n1")
+	from n1 : Graph!Node (name =~ 'n1')
 }
