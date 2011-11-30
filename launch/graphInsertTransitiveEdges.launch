@@ -6,7 +6,6 @@
 <mapAttribute key="Inout Models"/>
 <mapAttribute key="Inout Models Output Locations">
 <mapEntry key="g" value="platform:/resource/TTC2011/models/Copy of Graph.xmi"/>
-<mapEntry key="t" value="platform:/resource/TTC2011/models/reverseEdgesTrace.xmi"/>
 </mapAttribute>
 <mapAttribute key="Input Model Options"/>
 <mapAttribute key="Input Models">
