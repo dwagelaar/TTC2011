@@ -1,5 +1,6 @@
 module graphInsertTransitiveEdgesInplace debug;
 
+metamodel Graph : 'platform:/resource/TTC2011/metamodels/graph.ecore';
 transform g : Graph;
 
 rule EdgePair {

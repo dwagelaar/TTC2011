@@ -1,5 +1,7 @@
 module reverseEdges debug;
 
+metamodel Graph : 'platform:/resource/TTC2011/metamodels/graph.ecore';
+metamodel TRACE : 'http://www.eclipse.org/m2m/atl/emftvm/2011/Trace';
 transform g : Graph, t : TRACE;
 
 -- Matches all edges that have not been transformed.

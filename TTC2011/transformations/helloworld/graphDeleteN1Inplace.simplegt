@@ -1,5 +1,6 @@
 module graphDeleteN1Inplace debug;
 
+metamodel Graph : 'platform:/resource/TTC2011/metamodels/graph.ecore';
 transform g : Graph;
 
 abstract rule N1 {
