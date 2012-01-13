@@ -1,6 +1,6 @@
 -- @atlcompiler emftvm
 -- @path Graph=/TTC2011/metamodels/graph.ecore
-query nrOfCircles = Graph!Graph->allInstances()->first().circles->size().debug('nrOfCircles');
+query nrOfCircles = Graph!Graph.allInstances()->first().circles->size().debug('nrOfCircles');
 
 -- Finds the set of all circles of 3 nodes.
 helper context Graph!Graph def : circles : Set(Set(Graph!Node)) =

@@ -2,6 +2,6 @@
 -- @path Graph=/TTC2011/metamodels/graph.ecore
 query nrOfIsolatedNodes = Graph!Graph->allInstances()->first().isolatedNodes->size().debug('nrOfIsolatedNodes');
 
-helper context Graph!Graph def : isolatedNodes : Sequence(Graph!Edge) =
+helper context Graph!Graph def : isolatedNodes : Sequence(Graph!Node) =
 	self.nodes->reject(n|
-		Graph!Edge->allInstances()->exists(e|e.src = n or e.trg = n));
+		Graph!Edge.allInstances()->exists(e|e.src = n or e.trg = n));
