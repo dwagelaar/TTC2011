@@ -1,0 +1,13 @@
+module helloworld3b debug;
+
+metamodel HelloWorld : 'platform:/resource/TTC2011/metamodels/helloworld2.ecore';
+metamodel Result : 'platform:/resource/TTC2011/metamodels/result.ecore';
+
+transform M : HelloWorld, R : Result;
+
+rule Result {
+	from g : HelloWorld!Greeting (greetingMessage =~ m, person =~ p),
+		m : HelloWorld!GreetingMessage,
+		p : HelloWorld!Person
+	to r : Result!StringResult (result =~ m.text + ' ' + p.name)
+}

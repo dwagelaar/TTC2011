@@ -1,6 +1,6 @@
 -- @atlcompiler emftvm
 -- @path Graph=/TTC2011/metamodels/graph.ecore
-query nrOfLoopingEdges = Graph!Graph->allInstances()->first().loopingEdges->size().debug('nrOfLoopingEdges');
+query nrOfLoopingEdges = Graph!Graph.allInstances()->first().loopingEdges->size().debug('nrOfLoopingEdges');
 
 helper context Graph!Graph def : loopingEdges : Sequence(Graph!Edge) =
 	self.edges->select(e|e.src = e.trg);

@@ -1,6 +1,6 @@
 -- @atlcompiler emftvm
 -- @path Graph=/TTC2011/metamodels/graph.ecore
-query nrOfDanglingEdges = Graph!Graph->allInstances()->first().danglingEdges->size().debug('nrOfDanglingEdges');
+query nrOfDanglingEdges = Graph!Graph.allInstances()->first().danglingEdges->size().debug('nrOfDanglingEdges');
 
 helper context Graph!Graph def : danglingEdges : Sequence(Graph!Edge) =
 	self.edges->select(e|e.src.oclIsUndefined() xor e.trg.oclIsUndefined());

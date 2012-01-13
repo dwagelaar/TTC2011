@@ -1,0 +1,5 @@
+-- @atlcompiler emftvm
+-- @path HelloWorld=/TTC2011/metamodels/helloworld2.ecore
+query helloworld3 = HelloWorld!Greeting.allInstances()
+	->collect(g | g.greetingMessage.text + ' ' + g.person.name)
+	.debug('Result');

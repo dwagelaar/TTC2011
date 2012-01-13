@@ -19,6 +19,8 @@ Task 2.1: Hello World!
 This task concerns generating a constant - or static - model. For EMFTVM, this task was solved in the ATL language:
 - helloworld.atl contains the first part of the task
 - helloworld2.atl contains the second part of the task
+- helloworld3.atl contains the third part of the task
+- helloworld3b.simplegt contains the SimpleGT version of the third part of the task
 
 Endpoint rules are used to generate a constant number of elements.
 
@@ -34,14 +36,26 @@ To run helloworld2.atl:
 
 The ATL console shows the execution results. The generated model is called "helloworld2.xmi".
 
+To run helloworld3.atl:
+1. Select "Run -> Run Configurations..." from the main menu.
+2. Select "ATL EMFTVM Transformation -> helloworld3" from the list, and click "Run".
+
+The ATL console shows the execution results.
+
+To run helloworld3b.simplegt:
+1. Select "Run -> Run Configurations..." from the main menu.
+2. Select "ATL EMFTVM Transformation -> helloworld3b" from the list, and click "Run".
+
+The ATL console shows the execution results. The generated model is called "helloworld3-results.xmi".
+
 Task 2.2: Count Matches with certain Properties
 -----------------------------------------------
 
 As these tasks concern model querying, we use ATL's query mode. No models are generated in this mode, but string values may be printed on the ATL console:
 - nrOfNodes.atl counts the amount of nodes
 - nrOfLoopingEdges.atl counts the amount of edges with the same src and trg node
-- nrOfIsolatedNodes.atl count the amount of nodes without and edge connected to it
-- nrOfNodeCircles.atl count the amount of circles of 3 connected nodes
+- nrOfIsolatedNodes.atl counts the amount of nodes without and edge connected to it
+- nrOfCircles.atl counts the amount of circles of 3 connected nodes
 - nrOfDanglingEdges.atl counts the amount of edges with either the src or trg node missing
 
 To run any of these queries:
