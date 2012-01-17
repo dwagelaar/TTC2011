@@ -1,0 +1,49 @@
+module graphTopologyMigrate2 debug;
+
+metamodel Graph : 'platform:/resource/TTC2011/metamodels/graph.ecore';
+metamodel Graph3 : 'platform:/resource/TTC2011/metamodels/graph3.ecore';
+metamodel TRACE : 'http://www.eclipse.org/m2m/atl/emftvm/2011/Trace';
+transform G : Graph, G3 : Graph3, T : TRACE;
+
+context OclAny def : inGraph3 : Graph3!Node =
+	OclUndefined;
+
+context Graph!Node def : inGraph3 : Graph3!Node =
+	TRACE!TraceLink.allInstancesFrom('T')
+		->collect(l | l.sourceElements.first())
+		->any(s | s.object = self)
+		.sourceOf.targetElements->first().object;
+
+rule MigrateGraph {
+	from g : Graph!Graph
+	not g3 : Graph3!Graph
+	to g : Graph!Graph,
+		g3 : Graph3!Graph
+}
+
+rule MigrateNode {
+	from g : Graph!Graph (nodes =~ n),
+		g3 : Graph3!Graph,
+		n : Graph!Node
+	to g : Graph!Graph,
+		n : Graph!Node,
+		g3 : Graph3!Graph (nodes =~ n3),
+		n3 : Graph3!Node (text =~ n.name),
+		tl : TRACE!TraceLink (
+			sourceElements =~ se,
+			targetElements =~ te),
+		se : TRACE!SourceElement (object =~ n),
+		te : TRACE!TargetElement (object =~ n3)
+}
+
+rule MigrateEdge {
+	from g : Graph!Graph (edges =~ e),
+		e : Graph!Edge (src =~ n),
+		n : Graph!Node (inGraph3 =~ n3),
+		n3 : Graph3!Node
+	not e : Graph!Edge (trg =~ OclUndefined)
+	to g : Graph!Graph,
+		e : Graph!Edge (src =~ n),
+		n : Graph!Node (inGraph3 =~ n3),
+		n3 : Graph3!Node (linksTo =~ e.trg.inGraph3)
+}

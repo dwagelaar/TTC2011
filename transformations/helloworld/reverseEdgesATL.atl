@@ -6,11 +6,8 @@ create OUT : Graph from IN : Graph;
 uses graphCopy;
 
 rule Edge {
- from
-  s : Graph!Edge
- to
-  t : Graph!Edge (
+ from s : Graph!Edge
+ to t : Graph!Edge (
    src <- s.trg,
-   trg <- s.src
-  )
+   trg <- s.src)
 }

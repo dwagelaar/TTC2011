@@ -1,0 +1,17 @@
+module nrOfLoopingEdges2 debug;
+
+metamodel Graph : 'platform:/resource/TTC2011/metamodels/graph.ecore';
+metamodel Result : 'platform:/resource/TTC2011/metamodels/result.ecore';
+transform G : Graph, R : Result;
+
+rule FirstLoopingEdge {
+	from e : Graph!Edge (src =~ e.trg)
+	not r : Result!IntResult
+	to r : Result!IntResult (result =~ 1)
+}
+
+rule LoopingEdge {
+	from e : Graph!Edge (src =~ e.trg),
+		r : Result!IntResult
+	to r1 : Result!IntResult (result =~ r.result + 1)
+}

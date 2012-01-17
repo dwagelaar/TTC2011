@@ -1,0 +1,17 @@
+module nrOfNodes2 debug;
+
+metamodel Graph : 'platform:/resource/TTC2011/metamodels/graph.ecore';
+metamodel Result : 'platform:/resource/TTC2011/metamodels/result.ecore';
+transform G : Graph, R : Result;
+
+rule FirstNode {
+	from n : Graph!Node
+	not r : Result!IntResult
+	to r : Result!IntResult (result =~ 1)
+}
+
+rule Node {
+	from n : Graph!Node,
+		r : Result!IntResult
+	to r1 : Result!IntResult (result =~ r.result + 1)
+}

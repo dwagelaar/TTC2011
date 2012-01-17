@@ -20,9 +20,11 @@ This task concerns generating a constant - or static - model. For EMFTVM, this t
 - helloworld.atl contains the first part of the task
 - helloworld2.atl contains the second part of the task
 - helloworld3.atl contains the third part of the task
+- helloworldb.simplegt contains the SimpleGT version of the first part of the task
+- helloworld2b.si9mplegt contains the SimpleGT version of the second part of the task
 - helloworld3b.simplegt contains the SimpleGT version of the third part of the task
 
-Endpoint rules are used to generate a constant number of elements.
+In ATL, endpoint rules are used to generate a constant number of elements. In SimpleGT, one can omit the "from" part of a rule.
 
 To run helloworld.atl:
 1. Select "Run -> Run Configurations..." from the main menu.
@@ -41,6 +43,18 @@ To run helloworld3.atl:
 2. Select "ATL EMFTVM Transformation -> helloworld3" from the list, and click "Run".
 
 The ATL console shows the execution results.
+
+To run helloworldb.simplegt:
+1. Select "Run -> Run Configurations..." from the main menu.
+2. Select "ATL EMFTVM Transformation -> helloworldb" from the list, and click "Run".
+
+The ATL console shows the execution results. The generated model is called "helloworldb.xmi".
+
+To run helloworld2b.simplegt:
+1. Select "Run -> Run Configurations..." from the main menu.
+2. Select "ATL EMFTVM Transformation -> helloworld2b" from the list, and click "Run".
+
+The ATL console shows the execution results. The generated model is called "helloworld2b.xmi".
 
 To run helloworld3b.simplegt:
 1. Select "Run -> Run Configurations..." from the main menu.
@@ -64,6 +78,19 @@ To run any of these queries:
 
 The ATL console shows the requested result. Note that the source model is called "Graph.xmi", in case you want to verify the results manually.
 
+SimpleGT versions of this task generate Result models:
+- nrOfNodes2.simplegt consumes all nodes in a graph, and uses them to increment a result counter
+- nrOfLoopingEdges2.simplegt consumes and counts all looping edges
+- nrOfIsolatedNodes2.simplegt consumes and counts all isolated nodes
+- nrOfCircles2.simplegt counts and traces all circles of 3 connected nodes (consuming is not possible!)
+- nrOfDanglingEdges2.simplegt consumes and counts all edges with either the src or trg node missing
+
+To run any of these transformations:
+1. Select "Run -> Run Configurations..." from the main menu.
+2. Select "ATL EMFTVM Transformation -> <name>" from the list, where <name> corresponds to the transformation you want to run, and click "Run".
+
+The ATL console shows the execution results. The output is saved in a model called "<name>-result.xmi", e.g. "nrOfNodes2-result.xmi".
+
 Task 2.3: Reverse Edges
 -----------------------
 
@@ -86,9 +113,11 @@ The ATL console shows the execution results. The generated model is called "Copy
 Task 2.4: Simple Migration
 --------------------------
 
-This task migrates a model from one metamodel to another. This is ATL's strong point:
+This task migrates a model from one metamodel to another. This is ATL's strong point, whereas SimpleGT has to use manual tracing to perform this task:
 - graphSimpleMigrate.atl migrates a graph from the "graph.ecore" metamodel to the "graph2.ecore" metamodel
 - graphTopologyMigrate.atl migrates a graph from the "graph.ecore" metamodel to the "graph3.ecore" metamodel
+- graphSimpleMigrate2.simplegt migrates a graph from the "graph.ecore" metamodel to the "graph2.ecore" metamodel
+- graphTopologyMigrate2.simplegt migrates a graph from the "graph.ecore" metamodel to the "graph3.ecore" metamodel
 
 To run graphSimpleMigrate.atl:
 1. Select "Run -> Run Configurations..." from the main menu.
@@ -96,12 +125,32 @@ To run graphSimpleMigrate.atl:
 
 The ATL console shows the execution results. The generated model is called "Graph2.xmi".
 
+To run graphTopologyMigrate.atl:
+1. Select "Run -> Run Configurations..." from the main menu.
+2. Select "ATL EMFTVM Transformation -> graphTopologyMigrate" from the list, and click "Run".
+
+The ATL console shows the execution results. The generated model is called "Graph3.xmi".
+
+To run graphSimpleMigrate2.simplegt:
+1. Select "Run -> Run Configurations..." from the main menu.
+2. Select "ATL EMFTVM Transformation -> graphSimpleMigrate2" from the list, and click "Run".
+
+The ATL console shows the execution results. The generated model is called "graphSimpleMigrate2-result.xmi".
+
+To run graphTopologyMigrate2.simplegt:
+1. Select "Run -> Run Configurations..." from the main menu.
+2. Select "ATL EMFTVM Transformation -> graphTopologyMigrate2" from the list, and click "Run".
+
+The ATL console shows the execution results. The generated model is called "graphTopologyMigrate2-result.xmi".
+
 Task 2.5: Delete Node with Specific Name and its Incident Edges
 ---------------------------------------------------------------
 
-This task deletes all nodes named "n1". The provided ATL and SimpleGT solutions also perform the optional task of deleting all incident edges of the "n1" nodes:
-- graphDeleteN1.atl copies all graph elements, except for the "n1" nodes and their incident edges
-- graphDeleteN1Inplace.simplegt deletes all "n1" incident edges, then deletes all "n1" nodes
+This task deletes all nodes named "n1". ATL and SimpleGT solutions are also provided to perform the optional task of deleting all incident edges of the "n1" nodes:
+- graphDeleteN1.atl copies all graph elements, except for the "n1" nodes
+- graphDeleteN1Incident.atl copies all graph elements, except for the "n1" nodes and their incident edges
+- graphDeleteN1Inplace.simplegt deletes all "n1" nodes
+- graphDeleteN1IncidentInplace.simplegt deletes all "n1" incident edges, then deletes all "n1" nodes
 
 To run graphDeleteN1.atl:
 1. Select "Run -> Run Configurations..." from the main menu.
@@ -109,9 +158,21 @@ To run graphDeleteN1.atl:
 
 The ATL console shows the execution results. The generated model is called "GraphWithoutN1.xmi".
 
+To run graphDeleteN1Incident.atl:
+1. Select "Run -> Run Configurations..." from the main menu.
+2. Select "ATL EMFTVM Transformation -> graphDeleteN1Incident" from the list, and click "Run".
+
+The ATL console shows the execution results. The generated model is called "GraphWithoutN1.xmi".
+
 To run graphDeleteN1Inplace.simplegt:
 1. Select "Run -> Run Configurations..." from the main menu.
 2. Select "ATL EMFTVM Transformation -> graphDeleteN1Inplace" from the list, and click "Run".
+
+The ATL console shows the execution results. The generated model is called "Copy of Graph.xmi".
+
+To run graphDeleteN1IncidentInplace.simplegt:
+1. Select "Run -> Run Configurations..." from the main menu.
+2. Select "ATL EMFTVM Transformation -> graphDeleteN1IncidentInplace" from the list, and click "Run".
 
 The ATL console shows the execution results. The generated model is called "Copy of Graph.xmi".
 

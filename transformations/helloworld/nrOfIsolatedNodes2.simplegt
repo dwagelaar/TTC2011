@@ -1,0 +1,21 @@
+module nrOfIsolatedNodes2 debug;
+
+metamodel Graph : 'platform:/resource/TTC2011/metamodels/graph.ecore';
+metamodel Result : 'platform:/resource/TTC2011/metamodels/result.ecore';
+transform G : Graph, R : Result;
+
+rule FirstIsolatedNode {
+	from n : Graph!Node
+	not e : Graph!Edge (src =~ n)
+	not e : Graph!Edge (trg =~ n)
+	not r : Result!IntResult
+	to r : Result!IntResult (result =~ 1)
+}
+
+rule IsolatedNode {
+	from n : Graph!Node,
+		r : Result!IntResult
+	not e : Graph!Edge (src =~ n)
+	not e : Graph!Edge (trg =~ n)
+	to r1 : Result!IntResult (result =~ r.result + 1)
+}

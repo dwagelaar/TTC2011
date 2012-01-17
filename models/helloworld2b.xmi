@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="ASCII"?>
+<helloworld2:Greeting xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:helloworld2="platform:/resource/TTC2011/metamodels/helloworld2.ecore">
+  <greetingMessage text="Hello"/>
+  <person name="TTC Participants"/>
+</helloworld2:Greeting>

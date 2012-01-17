@@ -1,0 +1,61 @@
+module nrOfCircles2 debug;
+
+metamodel Graph : 'platform:/resource/TTC2011/metamodels/graph.ecore';
+metamodel Result : 'platform:/resource/TTC2011/metamodels/result.ecore';
+metamodel TRACE : 'http://www.eclipse.org/m2m/atl/emftvm/2011/Trace';
+transform G : Graph, R : Result, T : TRACE;
+
+rule FirstCircle {
+	from n1 : Graph!Node,
+		n2 : Graph!Node,
+		n3 : Graph!Node,
+		e12 : Graph!Edge (src =~ n1, trg =~ n2),
+		e23 : Graph!Edge (src =~ n2, trg =~ n3),
+		e31 : Graph!Edge (src =~ n3, trg =~ n1)
+	not r : Result!IntResult
+	to n1 : Graph!Node,
+		n2 : Graph!Node,
+		n3 : Graph!Node,
+		e12 : Graph!Edge (src =~ n1, trg =~ n2),
+		e23 : Graph!Edge (src =~ n2, trg =~ n3),
+		e31 : Graph!Edge (src =~ n3, trg =~ n1),
+		traces : TRACE!SourceElementList (
+			sourceElements =~ trace1,
+			sourceElements =~ trace2,
+			sourceElements =~ trace3),
+		trace1 : TRACE!SourceElement (object =~ n1),
+		trace2 : TRACE!SourceElement (object =~ n2),
+		trace3 : TRACE!SourceElement (object =~ n3),
+		r : Result!IntResult (result =~ 1)
+}
+
+rule Circle {
+	from n1 : Graph!Node,
+		n2 : Graph!Node,
+		n3 : Graph!Node,
+		e12 : Graph!Edge (src =~ n1, trg =~ n2),
+		e23 : Graph!Edge (src =~ n2, trg =~ n3),
+		e31 : Graph!Edge (src =~ n3, trg =~ n1),
+		r : Result!IntResult
+	not traces : TRACE!SourceElementList (
+			sourceElements =~ trace1,
+			sourceElements =~ trace2,
+			sourceElements =~ trace3),
+		trace1 : TRACE!SourceElement (object =~ n1),
+		trace2 : TRACE!SourceElement (object =~ n2),
+		trace3 : TRACE!SourceElement (object =~ n3)
+	to n1 : Graph!Node,
+		n2 : Graph!Node,
+		n3 : Graph!Node,
+		e12 : Graph!Edge (src =~ n1, trg =~ n2),
+		e23 : Graph!Edge (src =~ n2, trg =~ n3),
+		e31 : Graph!Edge (src =~ n3, trg =~ n1),
+		traces : TRACE!SourceElementList (
+			sourceElements =~ trace1,
+			sourceElements =~ trace2,
+			sourceElements =~ trace3),
+		trace1 : TRACE!SourceElement (object =~ n1),
+		trace2 : TRACE!SourceElement (object =~ n2),
+		trace3 : TRACE!SourceElement (object =~ n3),
+		r1 : Result!IntResult (result =~ r.result + 1)
+}
