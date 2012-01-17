@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="ASCII"?>
-<graph3:Graph xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:graph3="platform:/resource/TTC2011/metamodels/graph3.ecore">
-  <nodes text="a" linksTo="//@nodes.1"/>
-  <nodes text="b" linksTo="//@nodes.1"/>
-  <nodes text="c" linksTo="//@nodes.1 //@nodes.2"/>
-  <nodes text="d"/>
-</graph3:Graph>
