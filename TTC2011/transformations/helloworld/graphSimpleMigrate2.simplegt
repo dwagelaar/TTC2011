@@ -1,0 +1,50 @@
+module graphSimpleMigrate2 debug;
+
+metamodel Graph : 'platform:/resource/TTC2011/metamodels/graph.ecore';
+metamodel Graph2 : 'platform:/resource/TTC2011/metamodels/graph2.ecore';
+metamodel TRACE : 'http://www.eclipse.org/m2m/atl/emftvm/2011/Trace';
+transform G : Graph, G2 : Graph2, T : TRACE;
+
+context OclAny def : inGraph2 : Graph2!Node =
+	OclUndefined;
+
+context Graph!Node def : inGraph2 : Graph2!Node =
+	TRACE!TraceLink.allInstancesFrom('T')
+		->collect(l | l.sourceElements.first())
+		->any(s | s.object = self)
+		.sourceOf.targetElements->first().object;
+
+rule MigrateGraph {
+	from g : Graph!Graph
+	not g2 : Graph2!Graph
+	to g : Graph!Graph,
+		g2 : Graph2!Graph
+}
+
+rule MigrateNode {
+	from g : Graph!Graph (nodes =~ n),
+		g2 : Graph2!Graph,
+		n : Graph!Node
+	to g : Graph!Graph,
+		n : Graph!Node,
+		g2 : Graph2!Graph (gcs =~ n2),
+		n2 : Graph2!Node (text =~ n.name),
+		tl : TRACE!TraceLink (
+			sourceElements =~ se,
+			targetElements =~ te),
+		se : TRACE!SourceElement (object =~ n),
+		te : TRACE!TargetElement (object =~ n2)
+}
+
+rule MigrateEdge {
+	from g : Graph!Graph (edges =~ e),
+		g2 : Graph2!Graph,
+		e : Graph!Edge
+	to g : Graph!Graph,
+		e : Graph!Edge,
+		g2 : Graph2!Graph (gcs =~ e2),
+		e2 : Graph2!Edge (
+			text =~ '',
+			src =~ e.src.inGraph2,
+			trg =~ e.trg.inGraph2)
+}

@@ -1,0 +1,9 @@
+module helloworldb debug;
+
+metamodel HelloWorld : 'platform:/resource/TTC2011/metamodels/helloworld.ecore';
+transform M : HelloWorld;
+
+rule CreateGreeting {
+	not g : HelloWorld!Greeting
+	to g : HelloWorld!Greeting (text =~ 'Hello World')
+}

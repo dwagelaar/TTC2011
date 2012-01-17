@@ -4,9 +4,7 @@
 <booleanAttribute key="Display Timing Data" value="true"/>
 <mapAttribute key="Inout Model Options"/>
 <mapAttribute key="Inout Models"/>
-<mapAttribute key="Inout Models Output Locations">
-<mapEntry key="g" value="platform:/resource/TTC2011/models/Copy of Graph.xmi"/>
-</mapAttribute>
+<mapAttribute key="Inout Models Output Locations"/>
 <mapAttribute key="Input Model Options"/>
 <mapAttribute key="Input Models">
 <mapEntry key="IN" value="platform:/resource/TTC2011/models/Graph.xmi"/>

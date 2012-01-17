@@ -1,0 +1,51 @@
+module nrOfDanglingEdges2 debug;
+
+metamodel Graph : 'platform:/resource/TTC2011/metamodels/graph.ecore';
+metamodel Result : 'platform:/resource/TTC2011/metamodels/result.ecore';
+transform G : Graph, R : Result;
+
+abstract rule FirstDanglingEdge {
+	from e : Graph!Edge
+	not r : Result!IntResult
+	to r : Result!IntResult (result =~ 1)
+}
+
+rule FirstDanglingSrcEdge extends FirstDanglingEdge {
+	from e : Graph!Edge
+	not e : Graph!Edge (src =~ n),
+		n : Graph!Node
+	to r : Result!IntResult,
+		e : Graph!Edge
+}
+
+rule FirstDanglingTrgEdge extends FirstDanglingEdge {
+	from e : Graph!Edge
+	not e : Graph!Edge (trg =~ n),
+		n : Graph!Node
+	to r : Result!IntResult,
+		e : Graph!Edge
+}
+
+abstract rule DanglingEdge {
+	from e : Graph!Edge,
+		r : Result!IntResult
+	to r1 : Result!IntResult (result =~ r.result + 1)
+}
+
+rule DanglingSrcEdge extends DanglingEdge {
+	from e : Graph!Edge,
+		r : Result!IntResult
+	not e : Graph!Edge (src =~ n),
+		n : Graph!Node
+	to r1 : Result!IntResult,
+		e : Graph!Edge
+}
+
+rule DanglingTrgEdge extends DanglingEdge {
+	from e : Graph!Edge,
+		r : Result!IntResult
+	not e : Graph!Edge (trg =~ n),
+		n : Graph!Node
+	to r1 : Result!IntResult,
+		e : Graph!Edge
+}

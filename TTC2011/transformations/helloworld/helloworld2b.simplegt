@@ -1,0 +1,15 @@
+module helloworld2b debug;
+
+metamodel HelloWorld : 'platform:/resource/TTC2011/metamodels/helloworld2.ecore';
+transform M : HelloWorld;
+
+rule CreateGreeting {
+	not g : HelloWorld!Greeting
+	to g : HelloWorld!Greeting (
+			greetingMessage =~ gm,
+			person =~ p),
+		gm : HelloWorld!GreetingMessage (
+			text =~ 'Hello'),
+		p : HelloWorld!Person (
+			name =~ 'TTC Participants')
+}
