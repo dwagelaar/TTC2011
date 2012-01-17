@@ -25,7 +25,6 @@
 <mapEntry key="Result" value="platform:/resource/TTC2011/metamodels/result.ecore"/>
 <mapEntry key="TRACE" value="http://www.eclipse.org/m2m/atl/emftvm/2011/Trace"/>
 </mapAttribute>
-<stringAttribute key="Module File Name" value="/TTC2011/transformations/helloworld/nrOfNodes.emftvm"/>
 <stringAttribute key="Module Name" value="nrOfCircles2"/>
 <stringAttribute key="Module Path" value="/TTC2011/transformations/helloworld/"/>
 <mapAttribute key="Output Model Options"/>

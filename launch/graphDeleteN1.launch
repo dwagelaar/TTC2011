@@ -13,7 +13,6 @@
 <mapAttribute key="Metamodels">
 <mapEntry key="Graph" value="platform:/resource/TTC2011/metamodels/graph.ecore"/>
 </mapAttribute>
-<stringAttribute key="Module File Name" value="/TTC2011/transformations/helloworld/graphDeleteN1.emftvm"/>
 <stringAttribute key="Module Name" value="graphDeleteN1"/>
 <stringAttribute key="Module Path" value="/TTC2011/transformations/helloworld/"/>
 <mapAttribute key="Output Model Options">

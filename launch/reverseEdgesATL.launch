@@ -4,10 +4,7 @@
 <booleanAttribute key="Display Timing Data" value="true"/>
 <mapAttribute key="Inout Model Options"/>
 <mapAttribute key="Inout Models"/>
-<mapAttribute key="Inout Models Output Locations">
-<mapEntry key="g" value="platform:/resource/TTC2011/models/Copy of Graph.xmi"/>
-<mapEntry key="t" value="platform:/resource/TTC2011/models/reverseEdgesTrace.xmi"/>
-</mapAttribute>
+<mapAttribute key="Inout Models Output Locations"/>
 <mapAttribute key="Input Model Options"/>
 <mapAttribute key="Input Models">
 <mapEntry key="IN" value="platform:/resource/TTC2011/models/Graph.xmi"/>
@@ -16,7 +13,6 @@
 <mapAttribute key="Metamodels">
 <mapEntry key="Graph" value="platform:/resource/TTC2011/metamodels/graph.ecore"/>
 </mapAttribute>
-<stringAttribute key="Module File Name" value="/TTC2011/transformations/helloworld/reverseEdgesATL.emftvm"/>
 <stringAttribute key="Module Name" value="reverseEdgesATL"/>
 <stringAttribute key="Module Path" value="/TTC2011/transformations/helloworld/"/>
 <mapAttribute key="Output Model Options">
