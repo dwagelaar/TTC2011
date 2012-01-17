@@ -23,7 +23,6 @@
 <mapEntry key="Graph" value="platform:/resource/TTC2011/metamodels/graph.ecore"/>
 <mapEntry key="TRACE" value="http://www.eclipse.org/m2m/atl/emftvm/2011/Trace"/>
 </mapAttribute>
-<stringAttribute key="Module File Name" value="/TTC2011/transformations/helloworld/reverseEdges.emftvm"/>
 <stringAttribute key="Module Name" value="reverseEdges"/>
 <stringAttribute key="Module Path" value="/TTC2011/transformations/helloworld/"/>
 <mapAttribute key="Output Model Options">

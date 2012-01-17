@@ -14,7 +14,6 @@
 <mapEntry key="HelloWorld" value="platform:/resource/TTC2011/metamodels/helloworld2.ecore"/>
 <mapEntry key="MOF" value="http://www.eclipse.org/emf/2002/Ecore"/>
 </mapAttribute>
-<stringAttribute key="Module File Name" value="/TTC2011/transformations/helloworld/helloworld2.emftvm"/>
 <stringAttribute key="Module Name" value="helloworld2"/>
 <stringAttribute key="Module Path" value="/TTC2011/transformations/helloworld/"/>
 <mapAttribute key="Output Model Options">

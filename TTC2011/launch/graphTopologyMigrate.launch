@@ -14,7 +14,6 @@
 <mapEntry key="Graph" value="platform:/resource/TTC2011/metamodels/graph.ecore"/>
 <mapEntry key="Graph3" value="platform:/resource/TTC2011/metamodels/graph3.ecore"/>
 </mapAttribute>
-<stringAttribute key="Module File Name" value="/TTC2011/transformations/helloworld/graphTopologyMigrate.emftvm"/>
 <stringAttribute key="Module Name" value="graphTopologyMigrate"/>
 <stringAttribute key="Module Path" value="/TTC2011/transformations/helloworld/"/>
 <mapAttribute key="Output Model Options">
