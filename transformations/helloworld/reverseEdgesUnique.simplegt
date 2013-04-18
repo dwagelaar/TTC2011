@@ -1,0 +1,40 @@
+module reverseEdgesUnique debug;
+
+metamodel Graph : 'platform:/resource/TTC2011/metamodels/graph.ecore';
+transform g : Graph;
+
+-- Matches all edges that have not been transformed.
+abstract unique rule GraphEdge {
+	from e : Graph!Edge
+	to  e : Graph!Edge
+}
+
+-- Reverses all connected edges.
+rule ReverseConnectedEdge extends GraphEdge {
+	from e : Graph!Edge (src =~ n1, trg =~ n2),
+		n1 : Graph!Node,
+		n2 : Graph!Node
+	to  e : Graph!Edge (src =~ n2, trg =~ n1),
+		n1 : Graph!Node,
+		n2 : Graph!Node
+}
+
+-- Reverses all edges with only a src node.
+rule ReverseDanglingEdge1 extends GraphEdge {
+	from e : Graph!Edge (src =~ n1),
+		n1 : Graph!Node
+	not e : Graph!Edge (trg =~ n1),
+		n1 : Graph!Node
+	to  e : Graph!Edge (trg =~ n1),
+		n1 : Graph!Node
+}
+
+-- Reverses all edges with only a trg node.
+rule ReverseDanglingEdge2 extends GraphEdge {
+	from e : Graph!Edge (trg =~ n1),
+		n1 : Graph!Node
+	not e : Graph!Edge (src =~ n1),
+		n1 : Graph!Node
+	to  e : Graph!Edge (src =~ n1),
+		n1 : Graph!Node
+}
