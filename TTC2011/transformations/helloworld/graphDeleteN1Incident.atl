@@ -2,7 +2,7 @@
 -- @path Graph=/TTC2011/metamodels/graph.ecore
 module graphDeleteN1Incident;
 
-create OUT : Graph from IN : Graph;
+create OUT : Graph refining IN : Graph;
 
 --
 -- Helpers
@@ -21,22 +21,10 @@ helper context Graph!Node def : isN1 : Boolean =
 -- Rules
 --
 
-rule Graph {
-	from s : Graph!Graph
-	to t : Graph!Graph (
-		nodes <- s.nodes->reject(n | n.isN1),
-		edges <- s.edges->reject(e | e.linksToN1))
-}
-
 rule Node {
-	from s : Graph!Node (not s.isN1)
-	to t : Graph!Node (
-		name <- s.name)
+	from s : Graph!Node (s.isN1)
 }
 
 rule Edge {
-	from s : Graph!Edge (not s.linksToN1)
-	to t : Graph!Edge (
-		src <- s.src,
-		trg <- s.trg)
+	from s : Graph!Edge (s.linksToN1)
 }

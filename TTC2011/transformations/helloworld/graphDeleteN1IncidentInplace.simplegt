@@ -5,18 +5,23 @@ transform g : Graph;
 
 def : n1 : Boolean = 'n1';
 
-rule DeleteIncomingEdge {
+abstract rule N1 {
+	from n1 : Graph!Node (name =~ env.n1)
+	to n1 : Graph!Node (name =~ env.n1)
+}
+
+rule DeleteIncomingEdge extends N1 {
 	from e : Graph!Edge (trg =~ n1),
-		n1 : Graph!Node (name =~ env.n1)
-	to n1 : Graph!Node (name =~ env.n1)
+		n1 : Graph!Node
+	to n1 : Graph!Node
 }
 
-rule DeleteOutgoingEdge {
+rule DeleteOutgoingEdge extends N1 {
 	from e : Graph!Edge (src =~ n1),
-		n1 : Graph!Node (name =~ env.n1)
-	to n1 : Graph!Node (name =~ env.n1)
+		n1 : Graph!Node
+	to n1 : Graph!Node
 }
 
-rule DeleteN1 {
-	from n1 : Graph!Node (name =~ 'n1')
+rule DeleteN1 extends N1 {
+	from n1 : Graph!Node
 }
