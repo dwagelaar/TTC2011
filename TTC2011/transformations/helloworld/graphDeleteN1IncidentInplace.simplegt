@@ -3,10 +3,18 @@ module graphDeleteN1IncidentInplace debug;
 metamodel Graph : 'platform:/resource/TTC2011/metamodels/graph.ecore';
 transform g : Graph;
 
-rule DeleteIncidentEdge {
+def : n1 : Boolean = 'n1';
+
+rule DeleteIncomingEdge {
 	from e : Graph!Edge (trg =~ n1),
-		n1 : Graph!Node (name =~ 'n1')
-	to n1 : Graph!Node (name =~ 'n1')
+		n1 : Graph!Node (name =~ env.n1)
+	to n1 : Graph!Node (name =~ env.n1)
+}
+
+rule DeleteOutgoingEdge {
+	from e : Graph!Edge (src =~ n1),
+		n1 : Graph!Node (name =~ env.n1)
+	to n1 : Graph!Node (name =~ env.n1)
 }
 
 rule DeleteN1 {

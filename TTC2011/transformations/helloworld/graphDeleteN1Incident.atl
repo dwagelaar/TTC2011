@@ -8,21 +8,14 @@ create OUT : Graph from IN : Graph;
 -- Helpers
 --
 
-helper context Graph!Edge def : targetsN1 : Boolean =
-	self.trg.isN1;
+helper context Graph!Edge def : linksToN1 : Boolean =
+	self.src.isN1 or self.trg.isN1;
 
 helper context OclAny def : isN1 : Boolean =
 	false;
 
 helper context Graph!Node def : isN1 : Boolean =
 	self.name = 'n1';
-
-helper context OclAny def : notN1 : Graph!Node =
-	if self.isN1 then
-		OclUndefined
-	else
-		self
-	endif;
 
 --
 -- Rules
@@ -32,7 +25,7 @@ rule Graph {
 	from s : Graph!Graph
 	to t : Graph!Graph (
 		nodes <- s.nodes->reject(n | n.isN1),
-		edges <- s.edges->reject(e | e.targetsN1))
+		edges <- s.edges->reject(e | e.linksToN1))
 }
 
 rule Node {
@@ -42,8 +35,8 @@ rule Node {
 }
 
 rule Edge {
-	from s : Graph!Edge (not s.targetsN1)
+	from s : Graph!Edge (not s.linksToN1)
 	to t : Graph!Edge (
-		src <- s.src.notN1,
-		trg <- s.trg.notN1)
+		src <- s.src,
+		trg <- s.trg)
 }
