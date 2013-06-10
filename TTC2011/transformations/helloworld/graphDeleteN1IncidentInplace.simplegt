@@ -3,7 +3,7 @@ module graphDeleteN1IncidentInplace debug;
 metamodel Graph : 'platform:/resource/TTC2011/metamodels/graph.ecore';
 transform g : Graph;
 
-def : n1 : Boolean = 'n1';
+def : n1 : String = 'n1';
 
 abstract rule N1 {
 	from n1 : Graph!Node (name =~ env.n1)
