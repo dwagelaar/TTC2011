@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipse.m2m.atl.emftvm.launcher.EMFTVMTransformation">
 <stringAttribute key="ATL File Name" value="//TTC2011/transformations/helloworld/graphDeleteN1Incident.atl"/>
+<booleanAttribute key="Disable JIT compiler" value="false"/>
 <booleanAttribute key="Display Timing Data" value="true"/>
-<mapAttribute key="Inout Model Options"/>
-<mapAttribute key="Inout Models"/>
-<mapAttribute key="Inout Models Output Locations"/>
-<mapAttribute key="Input Model Options"/>
-<mapAttribute key="Input Models">
+<mapAttribute key="Inout Model Options">
+<mapEntry key="IN" value="derivedFile"/>
+</mapAttribute>
+<mapAttribute key="Inout Models">
 <mapEntry key="IN" value="platform:/resource/TTC2011/models/Graph.xmi"/>
 </mapAttribute>
+<mapAttribute key="Inout Models Output Locations">
+<mapEntry key="IN" value="platform:/resource/TTC2011/models/GraphWithoutN1.xmi"/>
+</mapAttribute>
+<mapAttribute key="Input Model Options"/>
+<mapAttribute key="Input Models"/>
 <mapAttribute key="Metamodel Options"/>
 <mapAttribute key="Metamodels">
 <mapEntry key="Graph" value="platform:/resource/TTC2011/metamodels/graph.ecore"/>
 </mapAttribute>
 <stringAttribute key="Module Name" value="graphDeleteN1Incident"/>
 <stringAttribute key="Module Path" value="/TTC2011/transformations/helloworld/"/>
-<mapAttribute key="Output Model Options">
-<mapEntry key="OUT" value="allowIntermodelReferences derivedFile"/>
-</mapAttribute>
-<mapAttribute key="Output Models">
-<mapEntry key="OUT" value="platform:/resource/TTC2011/models/GraphWithoutN1.xmi"/>
-</mapAttribute>
+<mapAttribute key="Output Model Options"/>
+<mapAttribute key="Output Models"/>
 <listAttribute key="Superimpose"/>
 </launchConfiguration>
